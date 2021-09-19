@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bootstrap', '~> 5.1'
 gem 'jquery-rails'
+gem 'stock_quote', '~> 3.0'
+gem 'devise', '~> 4.8'
 
 
 
