@@ -14,13 +14,13 @@
   </head>
 
   <body>
-
     <%= render "navbar" %>
       <br>
-      <div class="container">
-        <%= yield %>
-      </div>
+        <div class="container">
+          <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
     <%= render "footer" %>
-
   </body>
 </html>
