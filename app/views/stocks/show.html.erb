@@ -1,13 +1,26 @@
+<br>
+<% @ticker = StockQuote::Stock.quote(@stock.ticker) %>
+<% @ticker_2 = StockQuote::Stock.company(@stock.ticker) %>
 
-<p>
-  <strong>Ticker:</strong>
-  <%= @stock.ticker %>
-</p>
+  <% if !@ticker %>
+    The ticker <% @ticker.symbol %> doesn't exist.
+  <% else  %>
+    <% @logo = StockQuote::Stock.logo(@stock.ticker) %>
+    <img src="<%= @logo.url %>" alt="">
+    <div class="jumbotron bg-light">
+      <h1 class="display-4"><%= @ticker.company_name %></h1>
+      <p class="lead"><%= @ticker_2.description %> </p>
+      <p class="lead">Sector: <%= @ticker_2.sector %> </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @stock.user_id %>
-</p>
+      <hr class="my-4">
+        <p>Current Value: $<%= number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ',') %></p>
+        <p>Market Cap: $<%= number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ',') %></p>
+      <a class="btn btn-primary btn-lg" href="<%= @ticker_2.website %>" role="button"><%= @ticker.company_name %> webiste </a>
+    </div>
+  <% end %>
+
+<br>
+<br>
 
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>
